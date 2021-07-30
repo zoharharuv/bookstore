@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookstore</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body onload="onInit()">
+    <header>
+        <h1>Welcome to the Bookstore</h1>
+    </header>
+    <div class="books-section"></div>
+
+    <section class="books-filter">
+        <select onchange="onSetFilter(this.value)">
+            <option value="all">All books</option>
+            <option value="name">By title</option>
+            <option value="price">By price</option>
+        </select>
+    </section>
+    <input class="new-book" name="new-book-name" type="text" placeholder="Title" />
+    <input class="new-book" name="new-book-price" type="number" min="0" placeholder="Price" />
+    <button class="add-book" onclick="onAddBook()">Add book</button>
+    <div class="paging-section"></div>
+
+
+    <div class="modal" hidden>
+        <h2>Book Details</h2>
+        <h5></h5>
+        <div class="input-group">
+            <input type="button" value="-" class="button-minus" onclick="onRate(this.value)">
+            <input type="text" name="book-rate" readonly value="0" />
+            <input type="button" value="+" class="button-plus" onclick="onRate(this.value)">
+        </div>
+        <img src="">
+        <button onclick="onCloseModal()">X</button>
+    </div>
+
+    <script src="js/services/storage-service.js"></script>
+    <script src="js/services/book-service.js"></script>
+    <script src="js/controller.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,173 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    min-height: 100vh;
+    background-color: #5089C6;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+h1 {
+    margin-top: 0;
+    color: #FFAA4C;
+}
+
+button {
+    cursor: pointer;
+}
+
+.books-section {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    align-items: center;
+}
+
+/* table */
+
+.books-table {
+    border-collapse: collapse;
+    width: 80vw;
+    height: 30vh;
+    background: #b6e1fd;
+    margin: 5vh auto;
+}
+
+.books-table tr:first-child {
+    cursor: pointer;
+    font-weight: bold;
+    background: #035397;
+    color: white;
+}
+
+.books-table td {
+    border: 3px solid #001E6C;
+    font-size: 15px;
+    width: 2em;
+    height: 5vh;
+}
+
+.books-table tr:hover:not(:first-child) {
+    background: #adc2d6;
+}
+
+.books-filter {
+    margin-bottom: 7vh;
+}
+
+.actions {
+    background-color: #03437a;
+}
+
+/* action buttons */
+
+.action {
+    font-family: monospace;
+    font-weight: bold;
+    cursor: pointer;
+    color: #fff;
+    padding: 10px;
+}
+
+.read {
+    background-color: rgb(68, 92, 226);
+}
+
+.update {
+    background-color: #c0aa1e;
+}
+
+.delete {
+    background-color: rgb(187, 35, 35);
+}
+
+/* below table */
+
+.add-book {
+    font-weight: bold;
+    background-color: #f8921d;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 10%;
+    cursor: pointer;
+}
+
+.modal {
+    top: 10%;
+    left: 27%;
+    position: fixed;
+    width: 45vw;
+    height: 45vh;
+    background-color: #fff;
+}
+
+.modal button {
+    position: absolute;
+    top: 3px;
+    right: 3px;
+}
+
+.modal img {
+    position: relative;
+    top: 5%;
+    left: 0%;
+    height: 55%;
+}
+
+/* RATE SECTION */
+
+input {
+    border: 1px solid #eeeeee;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 10px 0px;
+    width: 50px;
+    text-align: center;
+}
+
+input[type="button"] {
+    cursor: pointer;
+}
+
+
+.input-group {
+    clear: both;
+    margin: 0;
+    position: relative;
+}
+
+.input-group input[type='button'] {
+    background-color: #686868;
+    color: #fff;
+    min-width: 35px;
+    width: auto;
+    transition: all 0.3s ease;
+}
+
+.button-minus{
+    font-weight: bold;
+    height: 38px;
+    padding: 0;
+    width: 38px;
+    position: relative;
+}
+.button-plus {
+    left: -13px;
+}
+
+.new-book{
+    width: 110px
+}
+
+/* PAGES SECTION */
+.paging-section button{
+    font-family: Impact, sans-serif;
+    background-color: #001E6C;
+    color: aliceblue;
+    margin: 10px 5px;
+    padding: 20px;
+}
