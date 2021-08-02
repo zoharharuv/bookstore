@@ -33,7 +33,7 @@ function setFilterBy(filterBy) {
     gFilterBy = filterBy;
 }
 
-function getBooksToShow() {
+function getBooksToShow() {debugger
     if (!gBooks.length) return gBooks = [];
     var books = getBooks();
     if (gFilterBy === 'all') return books;

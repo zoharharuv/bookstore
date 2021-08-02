@@ -111,3 +111,4 @@ function onRate(newValue) {
     updateBookRate(book, valueInt)
     elModal.querySelector('[name=book-rate]').value = book.rate;
 }
+
