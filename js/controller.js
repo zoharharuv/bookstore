@@ -7,29 +7,30 @@ function onInit() {
 function renderBooks() {
     var books = getBooksToShow();
     var strHTML = '';
-    if (!books.length) strHTML = '<h1>No books at the moment!</h1>';
+    if (!books.length) strHTML = '<h1 data-trans="no-books">No books at the moment!</h1>';
     else {
         strHTML = '<table class="books-table"><tbody>';
         strHTML += `<tr>
-        <td onclick="onSetFilter('all')">Id</td>
-        <td onclick="onSetFilter('name')">Title</td>
-        <td onclick="onSetFilter('price')">Price</td>
-        <td class="actions" colspan="3">Actions</td>
+        <td onclick="onSetFilter('all')" data-trans="id">Id</td>
+        <td onclick="onSetFilter('name')" data-trans="title">Title</td>
+        <td onclick="onSetFilter('price')" data-trans="price">Price</td>
+        <td class="actions" colspan="3" data-trans="actions">Actions</td>
         </tr>`;
         books.forEach(function (currBook) {
             strHTML += `<tr>
             <td>${currBook.id}</td>
             <td>${currBook.name}</td>
-            <td>$${currBook.price}</td>
-            <td><button class="action read" onclick="onReadBook('${currBook.id}')">Read</button></td>
-            <td><button class="action update" onclick="onUpdateBook('${currBook.id}')">Update</button></td>
-            <td><button class="action delete" onclick="onRemoveBook('${currBook.id}')">Delete</button></td>
+            <td>${formatCurrency(formatNum(currBook.price))}</td>
+            <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bookModal" onclick="onReadBook('${currBook.id}')" data-trans="read">Read</button></td>
+            <td><button class="action update" onclick="onUpdateBook('${currBook.id}')" data-trans="update">Update</button></td>
+            <td><button class="action delete" onclick="onRemoveBook('${currBook.id}')" data-trans="delete">Delete</button></td>
             </tr>`;
         })
         strHTML += '</tbody></table>';
     }
     var el = document.querySelector('.books-section');
     el.innerHTML = strHTML;
+    doTrans();
 }
 
 function renderPaging() {
@@ -53,8 +54,12 @@ function onNextPage(valueStr) {
     renderBooks();
 }
 
+function onSetLang(langBy) {
+    setLang(langBy);
+    renderBooks();
+}
+
 function onSetFilter(filterBy) {
-    console.log('Filtering by:', filterBy);
     setFilterBy(filterBy);
     renderBooks();
 }
@@ -73,13 +78,11 @@ function onAddBook() {
 }
 
 function onUpdateBook(bookId) {
-    console.log('update book:', bookId);
     var price = +prompt('enter new book\'s price');
     updateBook(bookId, price);
     renderBooks();
 }
 function onRemoveBook(bookId) {
-    console.log('remove book:', bookId);
     removeBook(bookId);
     resetPageIdx();
     renderBooks();
@@ -89,15 +92,9 @@ function onRemoveBook(bookId) {
 // MODAL
 function onReadBook(bookId) {
     var book = getBookById(bookId);
-    var elModal = document.querySelector('.modal');
-    elModal.querySelector('h5').innerText = book.name;
-    elModal.querySelector('[name=book-rate]').value = book.rate;
-    elModal.querySelector('img').src = book.imgUrl;
-    elModal.hidden = false;
-}
-
-function onCloseModal() {
-    document.querySelector('.modal').hidden = true;
+    document.querySelector('.modal-title').innerText = `${book.name}`;
+    document.querySelector('[name="book-rate"]').value = `${book.rate}`;
+    document.querySelector('.modal-img').src = `${book.imgUrl}`;
 }
 
 function onRate(newValue) {

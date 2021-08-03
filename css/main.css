@@ -9,6 +9,7 @@ body {
     min-height: 100vh;
     background-color: #5089C6;
     font-family: Georgia, 'Times New Roman', Times, serif;
+    direction: ltr;
 }
 
 h1 {
@@ -16,8 +17,13 @@ h1 {
     color: #FFAA4C;
 }
 
-button {
+button, select {
     cursor: pointer;
+}
+
+select{
+    width: 80px;
+    height: 25px;
 }
 
 .books-section {
@@ -96,28 +102,6 @@ button {
     cursor: pointer;
 }
 
-.modal {
-    top: 10%;
-    left: 27%;
-    position: fixed;
-    width: 45vw;
-    height: 45vh;
-    background-color: #fff;
-}
-
-.modal button {
-    position: absolute;
-    top: 3px;
-    right: 3px;
-}
-
-.modal img {
-    position: relative;
-    top: 5%;
-    left: 0%;
-    height: 55%;
-}
-
 /* RATE SECTION */
 
 input {
@@ -136,27 +120,27 @@ input[type="button"] {
 
 .input-group {
     clear: both;
-    margin: 0;
-    position: relative;
+    margin: 0 0 20px 0;
+    position: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .input-group input[type='button'] {
     background-color: #686868;
     color: #fff;
-    min-width: 35px;
+    max-width: 35px;
     width: auto;
     transition: all 0.3s ease;
 }
 
-.button-minus{
+.button-minus, .button-plus{
     font-weight: bold;
     height: 38px;
     padding: 0;
-    width: 38px;
+    min-width: 25px;
+    width: auto;
     position: relative;
-}
-.button-plus {
-    left: -13px;
 }
 
 .new-book{
@@ -170,4 +154,9 @@ input[type="button"] {
     color: aliceblue;
     margin: 10px 5px;
     padding: 20px;
+}
+
+/* bs addons */
+.modal-header{
+    justify-content: center;
 }

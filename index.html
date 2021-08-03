@@ -6,40 +6,86 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bookstore</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="css/main.css">
 </head>
 
 <body onload="onInit()">
     <header>
-        <h1>Welcome to the Bookstore</h1>
+        <h1 data-trans="header-title">Welcome to the Bookstore</h1>
     </header>
+    <section class="language-filter">
+        <select onchange="onSetLang(this.value)">
+            <option value="en" data-trans="eng">English</option>
+            <option value="he" data-trans="heb">עברית</option>
+        </select>
+    </section>
+
     <div class="books-section"></div>
 
     <section class="books-filter">
         <select onchange="onSetFilter(this.value)">
-            <option value="all">All books</option>
-            <option value="name">By title</option>
-            <option value="price">By price</option>
+            <option value="all" data-trans="filter-all">All</option>
+            <option value="name" data-trans="filter-title">By title</option>
+            <option value="price" data-trans="filter-price">By price</option>
         </select>
     </section>
-    <input class="new-book" name="new-book-name" type="text" placeholder="Title" />
-    <input class="new-book" name="new-book-price" type="number" min="0" placeholder="Price" />
-    <button class="add-book" onclick="onAddBook()">Add book</button>
+
+    <input class="new-book" name="new-book-name" type="text" placeholder="Title" data-trans="add-title-placeholder" />
+    <input class="new-book" name="new-book-price" type="number" min="0" placeholder="Price"
+        data-trans="add-price-placeholder" />
+    <button class="add-book" onclick="onAddBook()" data-trans="add-book">Add book</button>
+
     <div class="paging-section"></div>
 
-
-    <div class="modal" hidden>
-        <h2>Book Details</h2>
-        <h5></h5>
-        <div class="input-group">
-            <input type="button" value="-" class="button-minus" onclick="onRate(this.value)">
-            <input type="text" name="book-rate" readonly value="0" />
-            <input type="button" value="+" class="button-plus" onclick="onRate(this.value)">
+    <!-- Modal -->
+    <div class="modal fade" id="bookModal" tabindex="-1" aria-labelledby="bookModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="bookModalLabel">Modal title</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="input-group">
+                        <input type="button" value="-" class="button-minus" onclick="onRate(this.value)">
+                        <input type="text" name="book-rate" readonly value="0" />
+                        <input type="button" value="+" class="button-plus" onclick="onRate(this.value)">
+                    </div>
+                    <img class="modal-img" src="">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-trans="close">Close</button>
+                </div>
+            </div>
         </div>
-        <img src="">
-        <button onclick="onCloseModal()">X</button>
     </div>
 
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title" id="exampleModalLabel">Book details</h2>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <script src="js/services/i18n-service.js"></script>
     <script src="js/services/storage-service.js"></script>
     <script src="js/services/book-service.js"></script>
     <script src="js/controller.js"></script>

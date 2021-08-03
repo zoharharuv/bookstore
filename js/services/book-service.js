@@ -33,7 +33,7 @@ function setFilterBy(filterBy) {
     gFilterBy = filterBy;
 }
 
-function getBooksToShow() {debugger
+function getBooksToShow() {
     if (!gBooks.length) return gBooks = [];
     var books = getBooks();
     if (gFilterBy === 'all') return books;
@@ -47,7 +47,7 @@ function getBooksToShow() {debugger
     }
     else if (gFilterBy === 'price') {
         books.sort(function (book1, book2) {
-            return book2.price - book1.price;
+            return book1.price - book2.price;
         })
     }
     return books;
@@ -111,9 +111,9 @@ function _createBooks() {
     } else {
         gBookId = 101;
         _saveIdToStorage();
-        addBook('Narnia', 15);
-        addBook('Little Price', 18);
-        addBook('Physics', 20);
+        addBook('Narnia', 14.99);
+        addBook('Little Price', 17.99);
+        addBook('Physics', 19.99);
         return;
     }
     gBooks = books;
